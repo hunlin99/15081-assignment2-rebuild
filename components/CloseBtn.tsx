@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import "./CloseBtn.css"; // Create a CSS file for the styles
+import './CloseBtn.css'; // Create a CSS file for the styles
 
 interface CloseBtnProps {
   onClose: () => void; // Callback function to handle close
