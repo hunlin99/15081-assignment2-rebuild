@@ -1,0 +1,243 @@
+:root {
+    --text-color: #344D66;
+    --primary-color: #FBF0DF;
+    --secondary-color: #FFBCA3;
+}
+
+.content-section {
+    min-height: calc(105vh - 5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.btn-container {
+    position: fixed;
+    bottom: 10%;
+    right: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.new-post-btn {
+    background-color: var(--text-color);
+    color: var(--primary-color);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    width: 5em;
+    height: 5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.new-post-btn:hover {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+.post-container {
+    margin-left: 5%;
+    margin-right: 5%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    justify-content: center;
+    gap: 2.5rem;
+    padding-top: 5%;
+}
+
+.post-box {
+    border: 1px solid var(--text-color);
+    border-radius: 40px;
+    text-align: center;
+    padding: 15px;
+}
+
+
+.post-title {
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 10px;
+    transition: transform 0.3s;
+}
+
+.post-date {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.post-description {
+    margin-top: 5px;
+    line-height: 1.5;
+}
+
+/* Styles for the modal */
+.modal {
+    z-index: 1000;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.modal-content {
+    max-width: 50%;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.67);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(9.5px);
+    -webkit-backdrop-filter: blur(9.5px);
+    padding: 20px;
+    padding-top: 5px;
+    border-radius: 10px;
+    overflow-y: auto;
+    max-height: 90vh;
+    animation: fadeIn 0.5s ease-in-out;
+    margin-top: 2.5em;
+}
+
+
+.modal.fadeOut {
+    animation: fadeOut 0.5s ease-in-out;
+    /* Apply fadeOut animation */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+
+.posting-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-content h2 {
+    margin: 1em 0;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.title,
+.category1,
+.add-img {
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+
+.title input,
+.category1 input,
+.post-description {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.post-description {
+    height: 200px;
+}
+
+
+.post-heading {
+    font-weight: bold;
+}
+
+.post-title:focus,
+.post-category:focus,
+.post-description:focus {
+    outline: none;
+    border-color: var(--text-color);
+}
+
+.postSubmitBtn {
+    background-color: var(--text-color);
+    color: var(--primary-color);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.postSubmitBtn:hover {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+#detailTitle {
+    font-size: 50px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.delete-btn {
+    background-color: white;
+    border: solid var(--secondary-color);
+    color: var(--secondary-color);
+    transition: background-color 0.3s;
+}
+
+.delete-btn:hover {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    transform: none;
+}
+
+
+@media (max-width: 750px) {
+    .post-container {
+        display: flex;
+        flex-direction: column;
+        /* Stack posts vertically */
+        align-items: center;
+        /* Center posts horizontally */
+        gap: 1rem;
+        /* Add space between posts */
+    }
+
+    .post-container>div {
+        width: 100%;
+        /* Ensure each post takes full width */
+        max-width: 90%;
+        /* Add some padding for better appearance */
+    }
+}

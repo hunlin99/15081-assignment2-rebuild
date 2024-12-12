@@ -1,13 +1,12 @@
 import React from "react";
 import Link from "next/link";
 import { Merienda } from 'next/font/google'
-import '../app/globals.css';
 
 const merienda = Merienda({
     subsets: ['latin'],
     display: 'swap',
-  })
-  
+})
+
 const Header = () => {
     return (
         <header className={merienda.className}>
