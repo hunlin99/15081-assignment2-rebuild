@@ -36,33 +36,9 @@ Modal-based form for creating new posts.
 
 Optimized layout for both desktop and mobile devices.  
 
-## How to Run the Project Locally
+## How to Visit the Website
 
-**Prerequisites**
-
-Install Node.js (v14 or higher).
-
-Install npm (comes with Node.js) or Yarn.
-
-**Installation**
-
-Clone the repository:
-
-`git clone https://github.com/hunlin99/15081-assignment2.git`
-
-**Navigate to the project directory:**
-
-`cd my-project`
-
-**Install dependencies:**
-
-`npm install`
-
-**Run the development server:**
-
-`npm run dev`
-
-Open http://localhost:3000 in your browser to view the application.  
+This site was built using [GitHub Pages](https://hunlin99.github.io/15081-assignment2-rebuild/).
 
 ## Future Improvements
 
