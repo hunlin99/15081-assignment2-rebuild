@@ -1,101 +1,131 @@
-import Image from "next/image";
+"use client";
+
+import React, { useState } from "react";
+import Header from "../components/Header"; 
+import Footer from "../components/Footer"; 
+import CloseBtn from "../components/CloseBtn";
+
+const articles = [
+    {
+        id: 1,
+        title: "Cafe Lander",
+        author: "Jane Doe",
+        image: "./img/testimg-cafe.jpg",
+        article:
+            "Industrial Loft Style cafe. Serve specialty coffees, breakfast, lunch & dessert. It's the perfect spot for relaxing and enjoying unique blends.",
+    },
+    {
+        id: 2,
+        title: "Lambretta Pizza Club",
+        author: "John Smith",
+        image: "./img/testimg-pizza.jpg",
+        article:
+            "A celebration of Italian culinary heritage with an international twist, featuring handcrafted pizzas, delectable pastas, and savory sandwiches.",
+    },
+    {
+        id: 3,
+        title: "Petit Potato",
+        author: "Anna Lee",
+        image: "./img/testimg-petit.jpg",
+        article:
+            "A trendy Asian fusion restaurant and cafe offering a variety of food, tea-inspired snacks, and desserts with Japanese flair.",
+    },
+];
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isClosing, setIsClosing] = useState(false); // For fade-out animation
+    const [selectedArticle, setSelectedArticle] = useState(articles[0]); // Default article
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+
+    const handleOpenModal = (articleId: number) => {
+        // Find the article corresponding to the clicked "Read More" button
+        const article = articles.find((a) => a.id === articleId);
+        if (article) {
+            setSelectedArticle(article); // Set the clicked article as selected
+            setIsModalOpen(true);
+        }
+    };
+
+    const handleCloseModal = () => {
+        setIsClosing(true); // Start fade-out animation
+        setTimeout(() => {
+            setIsModalOpen(false);
+            setIsClosing(false); // Reset animation state
+        }, 500);
+    };
+
+    return (
+        <body>
+            <Header />
+            <section className="first-section">
+                <div className="cover">
+                    <h2>Cuisines Around Us</h2>
+                    <p>Savor the Flavors, Discover the Stories</p>
+                </div>
+            </section>
+            <section className="about-section">
+                <h2>About The Platform</h2>
+                <p>Welcome to Cuisine Around Us, where people from all areas share their favorite dishes. Whether you&apos;re a traveler, newcomer, or local, discover new flavors and the stories behind them. Join us, savor the flavors, and explore the world through food!</p>
+            </section>
+            <section className="trend">
+                <div className="latest">
+                    <h1 className="text-3xl font-bold text-center">
+                        Article of The Week<hr />
+                    </h1>
+                    <div className="grid-container">
+                        {/* Card 1 */}
+                        {articles.map((article) =>
+                            <div key={article.id}
+                                className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                                <img className="rounded-t-lg w-full h-48 object-cover" src={article.image} alt={article.title} />
+                                <div className="p-5">
+                                    <h5 className="mb-2 text-2xl font-bold tracking-tight" style={{ color: "#344D66" }}>{article.title}</h5>
+                                    <p className="mb-3 font-normal" style={{ color: "#344D66" }}>Industrial Loft Style cafe. Serve
+                                        {article.article.substring(0, 60)}...</p>
+                                    <button
+                                        className="inline-flex items-center px-3 py-2 text-sm font-medium text-center rounded-lg transition-transform duration-300"
+                                        onClick={() => handleOpenModal(article.id)}>
+                                        Read more
+                                        <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </section >
+
+            {/*Detail Modal*/}
+            {isModalOpen && (
+                <div id="createPostModal" className={`modal ${isClosing ? "fadeOut" : ""}`}
+                    style={{ display: "flex" }}>
+                    <div className="modal-content">
+                        <div className="posting-header">
+                            <h2>Recommendation of the week</h2>
+                            <CloseBtn onClose={handleCloseModal} />
+                        </div>
+                        <div className="modal-article">
+                            <h3>{selectedArticle.title}</h3>
+                            <p>
+                                <strong>Author:</strong> {selectedArticle.author}
+                            </p>
+                            <img
+                                src={selectedArticle.image}
+                                alt={selectedArticle.title}
+                                className="modal-image"
+                            />
+                            <p>{selectedArticle.article}</p>
+                        </div>
+                    </div>
+                </div>
+            )};
+            <Footer />
+
+        </body >
+    );
 }
