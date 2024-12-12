@@ -4,8 +4,7 @@ import React, { useState } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import CloseBtn from "../../components/CloseBtn";
-import '../../styles/globals.css';
-import '../../styles/page.css';
+import '../../style/page.css';
 
 interface Post {
   id: number;
@@ -86,7 +85,7 @@ export default function BlogPage() {
     <><head>
       <link
         rel="stylesheet"
-        href={`${process.env.ASSET_PREFIX || ""}/styles/page.css`}
+        href={`${process.env.ASSET_PREFIX || ""}/style/page.css`}
       />
     </head>
       <body>
